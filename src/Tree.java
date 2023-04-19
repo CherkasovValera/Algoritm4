@@ -4,6 +4,10 @@ import java.util.function.Consumer;
 //import static sun.net.www.http.KeepAliveCache.result;
 
 public class Tree {
+    public void getChildrenCount() {
+        return ;
+    }
+
     public class Node {
         private int value;
         private Node left;
@@ -14,7 +18,7 @@ public class Tree {
         }
     }
 
-    private Node root;// первое значение 7
+    Node root;// первое значение 7
 
     public void add(int value) {
         // затем вставляем value = 3
@@ -104,6 +108,21 @@ public class Tree {
         }
         return current;
     }
+    public static int getChildrenCount(Node node) {
+        if(node == null) {
+            return 0;
+        }
+        // if left and right of the node is null
+        // it is leaf node
+        if (node.left == null && node.right == null) {
+            return 1;
+        }
+        else {
+            return getChildrenCount(node.left) + getChildrenCount(node.right);
+        }
+    }
+
+
     //Показывает root корень
 //    public int findLast() {
 //        if (root == null) {
@@ -124,64 +143,98 @@ public class Tree {
         }
         return findLast(root).value;
     }
-
     private Node findLast(Node current) {
         if (current.right != null) {
             return findLast(current.right);
         }
         return current;
     }
+    //
 
-//    public List<Integer> dfs() {
+//    public Node getChildrenCount(Node current, Consumer<Integer> valueConsumer) {
+//        getChildrenCountInternal(root, valueConsumer);
+//        return current;
+//    }
+//    public int getChildrenCountInternal(Node current, Consumer<Integer> valueConsumer) {
+//        if (root == null) {
+//            throw new NoSuchElementException();
+//        }
+//        return 0;
+//
+//        if (current.left == null && current.right == null) {
+//            return 1;
+//        } else {
+//            return getChildrenCountInternal(current.left, valueConsumer) + getChildrenCountInternal(current.right, valueConsumer);
+//        }
+//    }
+    //
+//    private int getChildrenCount (Node current){
+//            if (current == null) {
+//                return 0;
+//            }
+//            if (current.left == null && current.right == null) {
+//                return 1;
+//            }
+//            else {                
+//                return getChildrenCount(current.left) + getChildrenCount(current.right);
+//            }
+//        
+//
+//    }
+    //
+
+    //    public List<Integer> dfs() {
 //        List<Integer> result = new ArrayList<>();
 //        dfs(root, result);
 //        return result;
 //    }
-    public void dfs(Consumer<Integer> valueConsumer) {
-        dfsInternal(root, valueConsumer);
-    }
 
-    private void dfsInternal(Node current,Consumer<Integer> valueCosumer) {
-        if (current != null) {
-            dfsInternal(current.left, valueCosumer);
-            valueCosumer.accept(current.value);
-            dfsInternal(current.right, valueCosumer);
-        }
 
-    }
+//        public void dfs (Consumer < Integer > valueConsumer) {
+//            dfsInternal(root, valueConsumer);
+//        }
+//
+//        private void dfsInternal (Node current, Consumer < Integer > valueCosumer){
+//            if (current != null) {
+//                dfsInternal(current.left, valueCosumer);
+//                valueCosumer.accept(current.value);
+//                dfsInternal(current.right, valueCosumer);
+//            }
+//
+//        }
 
 //    public List<Integer> bfs() {
 //        List<Integer> result = new ArrayList<>();
 //        bfs(result);
 //        return result;
 //    }
-    public void bfs(Consumer<Integer> valueConsumer) {
-        bfsInternal(valueConsumer);
-    }
-
-    private void bfsInternal (Consumer<Integer> valueConsumer) {
-        if (root == null) {
-        }
-
-        Queue<Node> queue = new ArrayDeque<>();
-        queue.add(root);
-        //7 3 9 2 5 8 1 4 6
-        while (!queue.isEmpty()) {
-            Node node = queue.poll();
-            valueConsumer.accept(node.value);
-            if (node.left != null) {
-                queue.add(node.left);
-            }
-            if (node.right != null) {
-            queue.add(node.right);
-            }
-
-        }
-    }
-    public int size(){
-        final int[] counter = new  int[1];
-        bfs(n-> counter[0]++);
-        return counter[0];
-    }
+//        public void bfs (Consumer < Integer > valueConsumer) {
+//            bfsInternal(valueConsumer);
+//        }
+//
+//        private void bfsInternal (Consumer < Integer > valueConsumer) {
+//            if (root == null) {
+//            }
+//
+//            Queue<Node> queue = new ArrayDeque<>();
+//            queue.add(root);
+//            //7 3 9 2 5 8 1 4 6
+//            while (!queue.isEmpty()) {
+//                Node node = queue.poll();
+//                valueConsumer.accept(node.value);
+//                if (node.left != null) {
+//                    queue.add(node.left);
+//                }
+//                if (node.right != null) {
+//                    queue.add(node.right);
+//                }
+//
+//            }
+//        }
+//        public int size () {
+//            final int[] counter = new int[1];
+//            bfs(n -> counter[0]++);
+//            return counter[0];
+//        }
 
 }

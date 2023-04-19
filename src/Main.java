@@ -18,17 +18,23 @@ public class Main {
         tree.add(4);
         tree.add(6);
         tree.add(11);
-        List<Integer> dfsOrderItems = new ArrayList<>();
-        tree.dfs(dfsOrderItems::add);
+ //       List<Integer> dfsOrderItems = new ArrayList<>();
+//        tree.dfs(dfsOrderItems::add);
 //        tree.dfs(integer -> dfsOrderItems.add(integer));.
-        System.out.println(dfsOrderItems);
-        List<Integer> bfsOrderItems = new ArrayList<>();
+//        System.out.println(dfsOrderItems);
+//        List<Integer> bfsOrderItems = new ArrayList<>();
 
-        tree.bfs(bfsOrderItems::add);
-        System.out.println(bfsOrderItems);
-        System.out.println(tree.size());
+//        tree.bfs(bfsOrderItems::add);
+//        System.out.println(bfsOrderItems);
+//        System.out.println(tree.size());
+        System.out.println("Минимальное значение значение");
         System.out.println(tree.findFirst());
+        System.out.println("Максимальное значение");
         System.out.println(tree.findLast());
+//        System.out.println("Total Leaf Nodes = " +  tree.getChildrenCount());
+
+//        List<Tree.Node> getChildrenCountOrderItems = new ArrayList<>();
+        tree.getChildrenCount();
 //
 //        System.out.println(tree.contains(5));//true
 //        System.out.println(tree.contains(2));//true
@@ -44,5 +50,9 @@ public class Main {
 //        System.out.println(tree.findFirst());
         //поиск в глубину dfs
 
+        int leafNodes = tree.getChildrenCount(tree.root);
+        System.out.println("Количество листьев = " + leafNodes);
+
     }
+
 }
